@@ -7,6 +7,6 @@ int main(int argc, char* argv[]) {
 	if(app->Init()) {
 		app->Loop();
 	}
-	
+
 	return 0;
 }
