@@ -1,0 +1,73 @@
+providers: [
+  {
+    key: "bt"
+    config:
+      commands: [
+        {
+          project: "C:\\projeler\\gameEngine"
+          source: "C:\\projeler\\gameEngine\\.build-tools.cson"
+          name: "make"
+          command: "mingw32-make"
+          wd: "."
+          env: {}
+          modifier: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output:
+            console:
+              close_success: true
+              queue_in_buffer: true
+              colors: false
+              stdin: false
+          version: 2
+        }
+        {
+          project: "C:\\projeler\\gameEngine"
+          source: "C:\\projeler\\gameEngine\\.build-tools.cson"
+          name: "make clean"
+          command: "mingw32-make clean"
+          wd: "."
+          env: {}
+          modifier: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output: {}
+          version: 2
+        }
+        {
+          project: "C:\\projeler\\gameEngine"
+          source: "C:\\projeler\\gameEngine\\.build-tools.cson"
+          name: "oyun"
+          command: "build\\bin\\windows\\86\\gameEngine.exe"
+          wd: "."
+          env: {}
+          modifier: {}
+          environment:
+            name: "child_process"
+            config:
+              stdoe: "both"
+          stdout:
+            pipeline: []
+          stderr:
+            pipeline: []
+          output:
+            file:
+              path: "output.log"
+              queue_in_file: true
+          version: 2
+        }
+      ]
+  }
+]
