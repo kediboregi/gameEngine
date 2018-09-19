@@ -1,4 +1,4 @@
-DEP_PATH ?= C:\projeler\gameEngine\dependencies
+DEP_PATH ?= C:\Users\Unequaled86\Documents\GitHub\gameEngine\dependencies
 
 BUILD_PATH = build\bin\windows\86
 PROJECT_NAME ?= gameEngine
