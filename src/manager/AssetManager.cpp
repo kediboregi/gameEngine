@@ -6,7 +6,7 @@ AssetManager::AssetManager(App& app) : mApp(&app) {
 }
 
 void AssetManager::AddTexture(std::string id, std::string path) {
-	std::string respath = "..\\..\\..\\resources\\";
+	std::string respath = "../../../resources/";
 	std::string bpath = SDL_GetBasePath()+respath+path;
 	textures.emplace(id, LoadTexture(mApp->mRenderer, bpath));
 }

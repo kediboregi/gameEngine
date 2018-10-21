@@ -15,7 +15,7 @@ bool App::Init() {
 		return false;
     }
 
-	mWindow = SDL_CreateWindow("cCc", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1024, 768, SDL_WINDOW_SHOWN);
+	mWindow = SDL_CreateWindow("cCc", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 400, 400, SDL_WINDOW_SHOWN);
 	if( mWindow == NULL ) {
 		printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
 		return false;
@@ -29,6 +29,7 @@ bool App::Init() {
 	}
 
 	stateManager->PushState(new GameState(*this));
+
 	return true;
 }
 
@@ -41,7 +42,9 @@ int App::Loop() {
 			fps = countedFrames;
 			countedFrames = 0;
 		}
-		deltaTime = ((SDL_GetTicks() - lastTime) / 1000.0f) * 32.0f;
+
+		//deltaTime = ((SDL_GetTicks() - lastTime) / 1000.0f) * 32.0f;
+		deltaTime = ((SDL_GetTicks() - lastTime) / 1000.0f);
 		lastTime = SDL_GetTicks();
 		countedFrames++;
 
@@ -53,14 +56,15 @@ int App::Loop() {
 		onUpdate();
 		onRender();
 
-		std::cout << "avgFPS: " << fps << std::endl;
-		std::cout << "frameTicks: " << deltaTime << std::endl;
+		//std::cout << "avgFPS: " << fps << " / " << "frameTicks: " << deltaTime << std::endl;
 		//printf("Seconds since start time %f \n", timer.elapsedMilliseconds());
 		//std::cout << "Milliseconds: " << timer.deltaTime() << std::endl;
 
 	}
 
 	onClean();
+
+	return 0;
 }
 
 void App::onEvent(SDL_Event event) {
@@ -82,6 +86,7 @@ void App::onRender() {
 }
 
 void App::onClean() {
+	stateManager->onClean();
 	SDL_DestroyRenderer(mRenderer);
     SDL_DestroyWindow(mWindow);
 	IMG_Quit();

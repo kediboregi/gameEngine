@@ -1,10 +1,11 @@
 #include "Entity.h"
+#include "component/Component.h"
 
 Entity::Entity() {
 }
 
 void Entity::onInit() {
-	
+	for (auto& c : components) c->onInit();
 }
 
 void Entity::onUpdate(float deltaTime) {
@@ -18,7 +19,7 @@ void Entity::onRender(SDL_Renderer* renderer) {
 }
 
 void Entity::onClean() {
-	
+	for (auto& c : components) c->onClean();
 }
 
 bool Entity::isActive() const { return mActive; }

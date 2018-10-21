@@ -1,7 +1,7 @@
 #include "StateManager.h"
 
 StateManager::StateManager() {
-	
+
 }
 
 void StateManager::onEvent(SDL_Event event) {
@@ -19,7 +19,7 @@ void StateManager::onRender() {
 		m_states.back()->onRender();
 }
 
-void StateManager::Clear() {
+void StateManager::onClean() {
 	while (!m_states.empty()) {
 		m_states.back()->onClean();
 		m_states.pop_back();
@@ -56,7 +56,7 @@ void StateManager::PopState() {
 	if (!m_states.empty())
 		m_states.back()->Active();
 }
-	
+
 State* StateManager::Get() {
 
 }

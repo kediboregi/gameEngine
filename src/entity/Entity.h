@@ -1,14 +1,16 @@
 #ifndef _Entity_H_
     #define _Entity_H_
-	
+
 #include <SDL.h>
-#include "component/Component.h"
 #include <iostream>
 #include <vector>
 #include <memory>
 #include <algorithm>
 #include <bitset>
 #include <array>
+#include "math.h"
+
+class Component;
 
 inline std::size_t getNewComponentTypeID() {
 	static std::size_t lastID = 0u;
@@ -28,23 +30,23 @@ constexpr std::size_t maxGroups = 32;
 class Entity {
 private:
 	bool mActive = true;
-	
+
 	std::vector<std::unique_ptr<Component>> components;
 	std::array<Component*, maxComponents> componentArray;
 	std::bitset<maxComponents> componentBitset;
-	
+
 public:
 	Entity();
-	
+
 	void onInit();
 	void onUpdate(float deltaTime);
 	void onRender(SDL_Renderer* renderer);
 	void onClean();
-	
+
 	bool isActive() const;
 	void destroy();
 	void active();
-	
+
 	template <typename T>
 	bool hasComponent() {
 		return componentBitset[getComponentTypeID<T>()];
